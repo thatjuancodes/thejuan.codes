@@ -24,6 +24,32 @@ const Hero: React.FC = () => {
     "Parsing secret love letters online"
   ], []);
 
+  const handleExploreClick = (): void => {
+    const projectsSection = document.getElementById('projects');
+    if (projectsSection) {
+      const offsetTop = projectsSection.offsetTop - 80;
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  // Keyboard event listener for Enter key
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (event.key === 'Enter') {
+        handleExploreClick();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  }, []);
+
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout>;
     
@@ -61,17 +87,6 @@ const Hero: React.FC = () => {
 
     return () => clearTimeout(timeout);
   }, [displayedText, isTyping, currentSloganIndex, slogans, lastCompletedSlogan]);
-
-  const handleExploreClick = (): void => {
-    const projectsSection = document.getElementById('projects');
-    if (projectsSection) {
-      const offsetTop = projectsSection.offsetTop - 80;
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth',
-      });
-    }
-  };
 
   return (
     <Box
@@ -131,6 +146,7 @@ const Hero: React.FC = () => {
             mb={32}
             display="flex"
             justifyContent="center"
+            position="relative"
           >
             <Box
               width={{ base: '300px', md: '700px' }}
@@ -188,64 +204,70 @@ const Hero: React.FC = () => {
                 </Box>
               </VStack>
             </Box>
+            
+            {/* CTA Button positioned at bottom right of terminal */}
+            <Button
+              size="sm"
+              onClick={handleExploreClick}
+              aria-label="Explore my work and projects"
+              px={4}
+              py={2}
+              borderRadius="md"
+              fontWeight="medium"
+              fontSize="sm"
+              position="absolute"
+              bottom={-12}
+              right={0}
+              overflow="hidden"
+              bg="transparent"
+              color="white"
+              border="2px solid"
+              borderColor="orange.400"
+              animation="bounce 2s ease-in-out infinite"
+              _before={{
+                content: '""',
+                position: 'absolute',
+                top: 0,
+                left: '-100%',
+                width: '100%',
+                height: '100%',
+                background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent)',
+                transition: 'left 0.5s',
+                zIndex: 1,
+              }}
+              _hover={{
+                bg: 'linear-gradient(135deg, #ff6b35, #f7931e, #ff8c42)',
+                borderColor: 'transparent',
+                transform: 'translateY(-2px)',
+                boxShadow: '0 10px 25px rgba(255, 107, 53, 0.3)',
+                animation: 'none',
+                _before: {
+                  left: '100%',
+                },
+              }}
+              _active={{
+                transform: 'translateY(0)',
+              }}
+              transition="all 0.3s ease"
+              sx={{
+                '@keyframes bounce': {
+                  '0%, 20%, 50%, 80%, 100%': {
+                    transform: 'translateY(0)',
+                  },
+                  '40%': {
+                    transform: 'translateY(-8px)',
+                  },
+                  '60%': {
+                    transform: 'translateY(-4px)',
+                  },
+                },
+              }}
+            >
+              <Text position="relative" zIndex={2}>
+                What I've done so far <i className="ri-arrow-right-line" style={{ marginLeft: '4px' }}></i>
+              </Text>
+            </Button>
           </Box>
-          
-          <Button
-            size="lg"
-            onClick={handleExploreClick}
-            aria-label="Explore my work and projects"
-            px={8}
-            py={3}
-            borderRadius="md"
-            fontWeight="medium"
-            fontSize="md"
-            position="relative"
-            overflow="hidden"
-            bg="transparent"
-            color="white"
-            border="2px solid"
-            borderColor="orange.400"
-            animation="bounce 2s ease-in-out infinite"
-            _before={{
-              content: '""',
-              position: 'absolute',
-              top: 0,
-              left: '-100%',
-              width: '100%',
-              height: '100%',
-              background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent)',
-              transition: 'left 0.5s',
-            }}
-            _hover={{
-              bg: 'linear-gradient(135deg, #ff6b35, #f7931e, #ff8c42)',
-              borderColor: 'transparent',
-              transform: 'translateY(-2px)',
-              boxShadow: '0 10px 25px rgba(255, 107, 53, 0.3)',
-              animation: 'none',
-              _before: {
-                left: '100%',
-              },
-            }}
-            _active={{
-              transform: 'translateY(0)',
-            }}
-            transition="all 0.3s ease"
-            sx={{
-              '@keyframes bounce': {
-                '0%, 20%, 50%, 80%, 100%': {
-                  transform: 'translateY(0)',
-                },
-                '40%': {
-                  transform: 'translateY(-8px)',
-                },
-                '60%': {
-                  transform: 'translateY(-4px)',
-                },
-              },
-            }}
-          >
-            What I've done so far
-          </Button>
         </Box>
       </Container>
     </Box>
