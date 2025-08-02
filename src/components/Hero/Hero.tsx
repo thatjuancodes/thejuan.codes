@@ -1,14 +1,65 @@
-import React from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   Box,
   Container,
   Heading,
   Text,
   Button,
+  Image,
   VStack,
 } from '@chakra-ui/react';
 
 const Hero: React.FC = () => {
+  const [currentSloganIndex, setCurrentSloganIndex] = useState(0);
+  const [displayedText, setDisplayedText] = useState('');
+  const [isTyping, setIsTyping] = useState(true);
+  const [completedLines, setCompletedLines] = useState<string[]>([]);
+  const [lastCompletedSlogan, setLastCompletedSlogan] = useState<string>('');
+
+  const slogans = useMemo(() => [
+    "Designing AI so that humans can do more human things",
+    "Nomadically moving baby to different parts of the world...",
+    "Mining public data to train Machines...",
+    "Doing sketchy stuff on weekends...",
+    "Parsing secret love letters online"
+  ], []);
+
+  useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>;
+    
+    if (isTyping) {
+      const currentSlogan = slogans[currentSloganIndex];
+      if (displayedText.length < currentSlogan.length) {
+        timeout = setTimeout(() => {
+          setDisplayedText(currentSlogan.slice(0, displayedText.length + 1));
+        }, 100);
+      } else {
+        timeout = setTimeout(() => {
+          setIsTyping(false);
+          setLastCompletedSlogan(currentSlogan);
+        }, 2000); // Pause at end of typing
+      }
+    } else {
+      // Instead of deleting, just move to next slogan
+      timeout = setTimeout(() => {
+        // Add the last completed slogan to history when starting new line
+        if (lastCompletedSlogan) {
+          setCompletedLines(prev => {
+            const newLines = [...prev, lastCompletedSlogan];
+            return newLines.slice(-3); // Keep only last 3 lines
+          });
+        }
+        
+        setCurrentSloganIndex((prev) => (prev + 1) % slogans.length);
+        setDisplayedText(''); // Start fresh
+        setIsTyping(true);
+        setLastCompletedSlogan(''); // Clear the last completed slogan
+      }, 1000); // Shorter pause before next slogan
+    }
+
+    return () => clearTimeout(timeout);
+  }, [displayedText, isTyping, currentSloganIndex, slogans, lastCompletedSlogan]);
+
   const handleExploreClick = (): void => {
     const projectsSection = document.getElementById('projects');
     if (projectsSection) {
@@ -30,56 +81,161 @@ const Hero: React.FC = () => {
       bg="gray.800"
     >
       <Container maxW="2xl">
-        <VStack gap={1} textAlign="center" color="white">
+        <Box textAlign="center" color="white">
+          <Box
+            mb={8}
+            display="flex"
+            justifyContent="center"
+          >
+            <Box
+              width={{ base: '150px', md: '200px' }}
+              height={{ base: '150px', md: '200px' }}
+              borderRadius="full"
+              overflow="hidden"
+              border="3px solid"
+              borderColor="white"
+            >
+              <Image
+                src="/profile.jpeg"
+                alt="JM Alvarez - AI/Agentic Engineer"
+                width="100%"
+                height="100%"
+                objectFit="cover"
+              />
+            </Box>
+          </Box>
+          
           <Heading
             as="h1"
             fontSize={{ base: '4xl', md: '5xl' }}
             fontWeight="semibold"
             letterSpacing="tight"
+            mb={2}
           >
             JM Alvarez
           </Heading>
           
           <Text
-            mt={1}
-            mb={2}
-            fontSize={{ base: 'lg', md: 'lg' }}
+            fontSize={{ base: 'lg', md: 'xl' }}
             color="white"
             opacity={0.8}
             fontWeight="light"
+            mb={16}
           >
             AI/Agentic Engineer
           </Text>
           
-          <Heading
-            as="h2"
-            mt={5}
-            mb={5}
-            fontSize={{ base: 'lg', md: 'xl' }}
-            color="orange.400"
-            fontWeight="normal"
-            lineHeight="relaxed"
+          <Box
+            mb={32}
+            display="flex"
+            justifyContent="center"
           >
-            Designing AI tools so humans can do more human things
-          </Heading>
+            <Box
+              width={{ base: '300px', md: '500px' }}
+              height={{ base: '120px', md: '140px' }}
+              fontFamily="mono"
+              fontSize={{ base: 'xs', md: 'sm' }}
+              color="green.400"
+              bg="black"
+              px={4}
+              py={3}
+              borderRadius="md"
+              border="1px solid"
+              borderColor="green.400"
+              overflow="hidden"
+            >
+              <VStack align="stretch" spacing={1} height="100%" justify="flex-end">
+                {/* Show last 3 completed lines */}
+                {completedLines.map((line, index) => (
+                  <Text key={index} color="gray.300" fontSize="inherit" textAlign="left">
+                    $ {line}
+                  </Text>
+                ))}
+                
+                {/* Current typing line */}
+                <Box display="flex" alignItems="center" textAlign="left">
+                  <Text as="span" color="gray.400" mr={2}>
+                    $ 
+                  </Text>
+                  <Text as="span" color="white">
+                    {displayedText}
+                  </Text>
+                  <Box
+                    as="span"
+                    width="2px"
+                    height="1.2em"
+                    bg="green.400"
+                    ml={1}
+                    animation="blink 1s infinite"
+                    sx={{
+                      '@keyframes blink': {
+                        '0%, 50%': { opacity: 1 },
+                        '51%, 100%': { opacity: 0 },
+                      },
+                    }}
+                  />
+                </Box>
+              </VStack>
+            </Box>
+          </Box>
           
           <Button
             size="lg"
-            mt={5}
             onClick={handleExploreClick}
             aria-label="Explore my work and projects"
-            bg="orange.500"
-            color="white"
-            _hover={{ bg: 'orange.600' }}
             px={8}
             py={3}
             borderRadius="md"
             fontWeight="medium"
             fontSize="md"
+            position="relative"
+            overflow="hidden"
+            bg="transparent"
+            color="white"
+            border="2px solid"
+            borderColor="orange.400"
+            animation="bounce 2s ease-in-out infinite"
+            _before={{
+              content: '""',
+              position: 'absolute',
+              top: 0,
+              left: '-100%',
+              width: '100%',
+              height: '100%',
+              background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent)',
+              transition: 'left 0.5s',
+            }}
+            _hover={{
+              bg: 'linear-gradient(135deg, #ff6b35, #f7931e, #ff8c42)',
+              borderColor: 'transparent',
+              transform: 'translateY(-2px)',
+              boxShadow: '0 10px 25px rgba(255, 107, 53, 0.3)',
+              animation: 'none',
+              _before: {
+                left: '100%',
+              },
+            }}
+            _active={{
+              transform: 'translateY(0)',
+            }}
+            transition="all 0.3s ease"
+            sx={{
+              '@keyframes bounce': {
+                '0%, 20%, 50%, 80%, 100%': {
+                  transform: 'translateY(0)',
+                },
+                '40%': {
+                  transform: 'translateY(-8px)',
+                },
+                '60%': {
+                  transform: 'translateY(-4px)',
+                },
+              },
+            }}
           >
-            Explore My Work
+            What I've done so far
           </Button>
-        </VStack>
+        </Box>
       </Container>
     </Box>
   );
