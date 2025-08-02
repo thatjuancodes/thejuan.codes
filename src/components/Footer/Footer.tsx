@@ -4,22 +4,20 @@ import './Footer.css';
 
 const Footer: React.FC = () => {
   const services: Service[] = [
-    { id: 1, name: 'AI Agent Development', href: '#' },
-    { id: 2, name: 'Machine Learning Solutions', href: '#' },
-    { id: 3, name: 'Process Automation', href: '#' },
-    { id: 4, name: 'AI Strategy Consulting', href: '#' }
+    { id: 1, name: 'Website Creation', href: '#projects' },
+    { id: 2, name: 'AI Automations', href: '#projects' },
+    { id: 3, name: 'Tech Consultancy', href: '#testimonials' },
+    { id: 4, name: 'Pinch Drummer', href: '#' }
   ];
 
   const socialLinks: SocialLink[] = [
-    { id: 1, name: 'LinkedIn', href: '#', icon: 'ri-linkedin-line' },
-    { id: 2, name: 'GitHub', href: '#', icon: 'ri-github-line' },
-    { id: 3, name: 'Twitter', href: '#', icon: 'ri-twitter-line' }
+    { id: 1, name: 'LinkedIn', href: 'https://www.linkedin.com/in/juanmiguelalvarezcodes/', icon: 'ri-linkedin-line' },
+    { id: 2, name: 'GitHub', href: 'https://github.com/thatjuancodes', icon: 'ri-github-line' }
   ];
 
   const contactInfo: ContactInfo[] = [
-    { id: 1, type: 'email', value: 'jm.alvarez@example.com', icon: 'ri-mail-line' },
-    { id: 2, type: 'phone', value: '+1 (555) 123-4567', icon: 'ri-phone-line' },
-    { id: 3, type: 'location', value: 'San Francisco, CA', icon: 'ri-map-pin-line' }
+    { id: 1, type: 'email', value: 'thejuan.codes@gmail.com', icon: 'ri-mail-line' },
+    { id: 2, type: 'location', value: 'Nomadically moving around the world', icon: 'ri-map-pin-line' }
   ];
 
   return (
