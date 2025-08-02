@@ -133,10 +133,10 @@ const Hero: React.FC = () => {
             justifyContent="center"
           >
             <Box
-              width={{ base: '300px', md: '500px' }}
-              height={{ base: '120px', md: '140px' }}
+              width={{ base: '300px', md: '700px' }}
+              height={{ base: '120px', md: '180px' }}
               fontFamily="mono"
-              fontSize={{ base: 'xs', md: 'sm' }}
+              fontSize={{ base: 'xs', md: 'md' }}
               color="green.400"
               bg="black"
               px={4}
@@ -146,13 +146,22 @@ const Hero: React.FC = () => {
               borderColor="green.400"
               overflow="hidden"
             >
-              <VStack align="stretch" spacing={1} height="100%" justify="flex-end">
-                {/* Show last 3 completed lines */}
-                {completedLines.map((line, index) => (
-                  <Text key={index} color="gray.300" fontSize="inherit" textAlign="left">
-                    $ {line}
-                  </Text>
-                ))}
+              <VStack align="stretch" spacing={1} height="100%" justify="flex-start">
+                {/* Show last 3 completed lines with varying opacity */}
+                {completedLines.map((line, index) => {
+                  const opacity = 0.5 + (index * 0.2); // 0.5, 0.7, 0.9
+                  return (
+                    <Text 
+                      key={index} 
+                      color="gray.500" 
+                      fontSize="inherit" 
+                      textAlign="left" 
+                      opacity={opacity}
+                    >
+                      $ {line}
+                    </Text>
+                  );
+                })}
                 
                 {/* Current typing line */}
                 <Box display="flex" alignItems="center" textAlign="left">
