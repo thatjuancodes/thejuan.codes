@@ -267,6 +267,26 @@ const Hero: React.FC = () => {
                 What I've done so far <i className="ri-arrow-right-line" style={{ marginLeft: '4px' }}></i>
               </Text>
             </Button>
+
+            {/* Text hint positioned at bottom left of terminal */}
+            <Text
+              position="absolute"
+              bottom={-10}
+              left={0}
+              fontSize="md"
+              color="gray.500"
+              opacity={0.7}
+              fontStyle="italic"
+              animation="fadeInOut 3s ease-in-out infinite"
+              sx={{
+                '@keyframes fadeInOut': {
+                  '0%, 100%': { opacity: 0.3 },
+                  '50%': { opacity: 0.7 },
+                },
+              }}
+            >
+              Hit enter key to explore...
+            </Text>
           </Box>
         </Box>
       </Container>
