@@ -50,7 +50,9 @@ const Hero: React.FC = () => {
           });
         }
         
-        setCurrentSloganIndex((prev) => (prev + 1) % slogans.length);
+        // Check if we're at the last slogan
+        const nextIndex = (currentSloganIndex + 1) % slogans.length;
+        setCurrentSloganIndex(nextIndex);
         setDisplayedText(''); // Start fresh
         setIsTyping(true);
         setLastCompletedSlogan(''); // Clear the last completed slogan
