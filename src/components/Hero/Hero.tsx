@@ -96,6 +96,7 @@ const Hero: React.FC = () => {
       alignItems="center"
       justifyContent="center"
       bg="gray.800"
+      pt={16}
     >
       <Container maxW="2xl">
         <Box textAlign="center" color="white">
@@ -143,7 +144,7 @@ const Hero: React.FC = () => {
           </Text>
           
           <Box
-            mb={32}
+            mb={16}
             display="flex"
             justifyContent="center"
             position="relative"

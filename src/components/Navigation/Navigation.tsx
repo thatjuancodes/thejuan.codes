@@ -39,9 +39,9 @@ const Navigation: React.FC = () => {
   return (
     <Box
       as="nav"
-      bg="gray.800"
-      color="white"
-      py={6}
+      bg="black"
+      color="green.400"
+      py={3}
       px={12}
       position="fixed"
       width="100%"
@@ -50,61 +50,89 @@ const Navigation: React.FC = () => {
       transform={isVisible ? 'translateY(0)' : 'translateY(-100%)'}
       transition="transform 0.3s ease-in-out"
       opacity={isVisible ? 1 : 0}
+      borderBottom="1px solid"
+      borderColor="green.400"
+      fontFamily="mono"
     >
       <Container maxW="6xl">
         <Flex justify="space-between" align="center">
           <Text
-            fontSize="xl"
-            fontWeight="bold"
+            fontSize="lg"
+            fontWeight="semibold"
             letterSpacing="tight"
+            color="green.400"
           >
-            JM Alvarez
+            $ jm_alvarez
           </Text>
           
-          <Flex gap={4}>
+          <Flex gap={6}>
             <Button
               variant="ghost"
-              color="white"
-              textTransform="uppercase"
-              _hover={{ color: 'orange.400' }}
+              color="green.400"
+              fontSize="sm"
+              fontFamily="mono"
+              _hover={{ 
+                color: 'white'
+              }}
+              _active={{
+                color: 'white'
+              }}
               onClick={() => scrollToSection('projects')}
               aria-label="Navigate to Projects section"
             >
-              Projects
+              ./projects
             </Button>
             
             <Button
               variant="ghost"
-              color="white"
-              textTransform="uppercase"
-              _hover={{ color: 'orange.400' }}
+              color="green.400"
+              fontSize="sm"
+              fontFamily="mono"
+              _hover={{ 
+                color: 'white'
+              }}
+              _active={{
+                color: 'white'
+              }}
               onClick={() => scrollToSection('testimonials')}
               aria-label="Navigate to Testimonials section"
             >
-              Testimonials
+              ./testimonials
             </Button>
             
-            <Button
+            {/* <Button
               variant="ghost"
-              color="white"
-              textTransform="uppercase"
-              _hover={{ color: 'orange.400' }}
+              color="green.400"
+              fontSize="sm"
+              fontFamily="mono"
+              _hover={{ 
+                color: 'white'
+              }}
+              _active={{
+                color: 'white'
+              }}
               onClick={() => scrollToSection('blog')}
               aria-label="Navigate to Blog section"
             >
-              Blog
+              ./blog
             </Button>
             
             <Button
               variant="ghost"
-              color="white"
-              textTransform="uppercase"
-              _hover={{ color: 'orange.400' }}
+              color="green.400"
+              fontSize="sm"
+              fontFamily="mono"
+              _hover={{ 
+                color: 'white'
+              }}
+              _active={{
+                color: 'white'
+              }}
               onClick={() => scrollToSection('contact')}
               aria-label="Navigate to Contact section"
             >
-              Contact
-            </Button>
+              ./contact
+            </Button> */}
           </Flex>
         </Flex>
       </Container>

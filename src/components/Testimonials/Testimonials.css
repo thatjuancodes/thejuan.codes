@@ -41,20 +41,25 @@
 
 .testimonials__carousel-container {
   position: relative;
-  height: 280px;
+  min-height: 400px;
 }
 
 .testimonials__slide {
-  position: absolute;
   width: 100%;
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
   z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
 }
 
 .testimonials__slide--active {
   opacity: 1;
   z-index: 1;
+  visibility: visible;
+  position: relative;
 }
 
 .testimonials__dots {

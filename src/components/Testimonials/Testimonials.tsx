@@ -9,24 +9,31 @@ const Testimonials: React.FC = () => {
   const testimonials: Testimonial[] = [
     {
       id: 1,
-      quote: "JM's AI solutions transformed our customer service operations. The intelligent agent he built handles complex queries with remarkable accuracy, allowing our human team to focus on strategic initiatives.",
-      author: "Sarah Chen",
-      position: "VP of Operations",
-      company: "TechFlow Solutions"
+      quote: "JM was an excellent software engineer for Fortcode. He helped expand the startup ideas for Fortcode and developed the mobile app and its APIs. Most of all, he is a very charismatic speaker where he can clearly communicate his thoughts to everyone in the room with ease and confidence.",
+      author: "Kenneth Bastian",
+      position: "CTO/Founder",
+      company: "Fortcode Inc."
     },
     {
       id: 2,
-      quote: "The predictive analytics platform JM developed gave us unprecedented insights into market trends. Our forecasting accuracy improved by 40%, directly impacting our bottom line.",
-      author: "Michael Rodriguez",
-      position: "Chief Data Officer",
-      company: "MarketVision Inc"
+      quote: "JM was a fantastic team lead for an outsourced engineering team. He communicated clearly between the team and product to ensure that each task was understood and completed within each sprint. JM thought through each issue or feature and asked great clarifying questions that would help his team complete their work in a timely manner. In the event that there was a need for urgent fixes or an extra hand on projects, JM was first to dive in and go the extra mile to ensure that our customers were taken care of. He has a true passion for building and maintaining a product to help customers. He puts in extra effort to truly understand how each feature or bug affects a customer. I enjoyed working with JM and appreciated his strong communication and time management skills.",
+      author: "Samantha Lawson",
+      position: "Project Manager",
+      company: "AgencyMVP"
     },
     {
       id: 3,
-      quote: "Working with JM was exceptional. His deep understanding of AI and practical business applications resulted in a workflow automation system that saved us countless hours weekly.",
-      author: "Emily Watson",
-      position: "CEO",
-      company: "Streamline Enterprises"
+      quote: "JM is an excellent engineer and a fantastic team leader and mentor. I could always count on him to keep things running smoothly, whether that was through helping on project management and design, assisting other developers to help them with their tasks, or by rolling up his sleeves and pitching in to get tasks finished. He always asks the right questions and finds a way to deliver a solution. It was a pleasure working with him.",
+      author: "Stephen Weil",
+      position: "CTO",
+      company: "AgencyMVP"
+    },
+    {
+      id: 4,
+      quote: "I had the opportunity to work with JM when we worked in the same team at Fortcode, Inc. He's a passionate developer with an exceptional understanding of modern technologies. He's also a natural leader who knows how to bring the best out of his teammates. Whenever our team encountered an issue, he always had a number of smart ideas lined up to resolve it. I'd say it's quite rare to find a person with JM's level of dedication and positive energy. Any developer would be more than lucky to have him as a teammate.",
+      author: "Rio Sevilla",
+      position: "Frontend Developer",
+      company: "Fortcode Inc."
     }
   ];
 
@@ -78,6 +85,7 @@ const Testimonials: React.FC = () => {
                   index === currentSlide ? 'testimonials__slide--active' : ''
                 }`}
                 aria-hidden={index !== currentSlide}
+
               >
                 <TestimonialCard
                   quote={testimonial.quote}

@@ -3,41 +3,51 @@ import {
   Box,
   Container,
   Heading,
-  SimpleGrid,
   VStack,
+  Text,
+  HStack,
+  Tag,
 } from '@chakra-ui/react';
 import { Project } from '../../types';
-import ProjectCard from './ProjectCard';
 
 const Projects: React.FC = () => {
   const projects: Project[] = [
     {
       id: 1,
-      title: 'Intelligent Customer Support Agent',
-      description: 'An AI-powered customer service agent that handles 90% of inquiries automatically while maintaining human-like conversations.',
-      imageUrl: 'https://readdy.ai/api/search-image?query=Modern%20AI%20chatbot%20interface%20with%20clean%20design%20showing%20conversation%20bubbles%20and%20smart%20responses%2C%20professional%20dashboard%20with%20blue%20and%20green%20accents%20on%20white%20background%2C%20user-friendly%20AI%20assistant%20application&width=400&height=300&seq=project1&orientation=landscape',
-      technologies: ['Python', 'OpenAI', 'FastAPI']
+      title: 'Homemaker',
+      description: 'A home system to automate home management with smart controls and monitoring capabilities.',
+      imageUrl: '',
+      technologies: ['React', 'TypeScript']
     },
     {
       id: 2,
-      title: 'Predictive Analytics Platform',
-      description: 'A machine learning platform that predicts market trends and customer behavior with 95% accuracy for enterprise clients.',
-      imageUrl: 'https://readdy.ai/api/search-image?query=Data%20analytics%20dashboard%20with%20charts%20graphs%20and%20AI%20insights%20visualization%2C%20modern%20business%20intelligence%20interface%20with%20dark%20theme%20and%20colorful%20data%20representations%2C%20professional%20analytics%20platform&width=400&height=300&seq=project2&orientation=landscape',
-      technologies: ['TensorFlow', 'React', 'PostgreSQL']
+      title: 'Finance Simulator',
+      description: 'A simple webtool to model personal investments and financial planning scenarios.',
+      imageUrl: '',
+      technologies: ['Ruby on Rails', 'Next.js', 'Hasura']
     },
     {
       id: 3,
-      title: 'Autonomous Workflow Orchestrator',
-      description: 'An AI agent system that automates complex business processes, reducing manual work by 80% across multiple departments.',
-      imageUrl: 'https://readdy.ai/api/search-image?query=Automated%20workflow%20diagram%20with%20AI%20agents%20and%20process%20optimization%2C%20robotic%20process%20automation%20interface%20showing%20connected%20tasks%20and%20smart%20decision%20trees%2C%20enterprise%20automation%20platform&width=400&height=300&seq=project3&orientation=landscape',
-      technologies: ['LangChain', 'Docker', 'Redis']
+      title: 'Qout.R',
+      description: 'A simple webtool to generate business quotes more efficiently with customizable templates.',
+      imageUrl: '',
+      technologies: ['React', 'TypeScript']
+    },
+    {
+      id: 4,
+      title: 'Hasura JSON to ERD Tool',
+      description: 'A Python tool to generate an Entity Relationship Diagram from a Hasura JSON export.',
+      imageUrl: '',
+      technologies: ['Python', 'Hasura', 'GraphQL', 'JSON']
+    },
+    {
+      id: 5,
+      title: 'DocKeepr',
+      description: 'Convert document formats into editable and printable PDF documents with format preservation.',
+      imageUrl: '',
+      technologies: ['HTML', 'CSS', 'JavaScript']
     }
   ];
-
-  const handleViewDetails = (projectId: number): void => {
-    // Handle project details view - could open modal or navigate to detail page
-    console.log(`Viewing details for project ${projectId}`);
-  };
 
   return (
     <Box
@@ -47,35 +57,95 @@ const Projects: React.FC = () => {
       px={12}
       bg="gray.50"
     >
-      <Container maxW="6xl">
-        <VStack gap={16}>
+      <Container maxW="4xl">
+        <VStack gap={12}>
           <Heading
             as="h2"
-            fontSize="4xl"
-            fontWeight="bold"
+            fontSize="3xl"
+            fontWeight="semibold"
             textAlign="center"
             letterSpacing="tight"
             color="gray.800"
+            mb={8}
+            fontFamily="mono"
           >
-            Featured Projects
+            $ ls projects/
           </Heading>
           
-          <SimpleGrid
-            columns={{ base: 1, md: 2, lg: 3 }}
-            spacing={6}
+          <Box
+            display="grid"
+            gridTemplateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
+            gap={6}
             width="100%"
           >
-            {projects.map((project) => (
-              <ProjectCard
+            {projects.map((project, index) => (
+              <Box
                 key={project.id}
-                title={project.title}
-                description={project.description}
-                imageUrl={project.imageUrl}
-                technologies={project.technologies}
-                onViewDetails={() => handleViewDetails(project.id)}
-              />
+                bg="white"
+                borderRadius="md"
+                border="1px solid"
+                borderColor="gray.200"
+                p={6}
+                fontFamily="mono"
+                transition="all 0.2s ease"
+                _hover={{
+                  borderColor: "green.400",
+                  shadow: "md",
+                }}
+              >
+                <VStack align="stretch" spacing={3}>
+                  <HStack justify="space-between" align="center">
+                    <Text
+                      fontSize="lg"
+                      fontWeight="semibold"
+                      color="green.600"
+                    >
+                      $ {project.title}
+                    </Text>
+                    <Tag
+                      size="sm"
+                      bg="gray.100"
+                      color="gray.700"
+                      borderRadius="full"
+                      fontSize="xs"
+                      fontFamily="mono"
+                    >
+                      {index + 1}
+                    </Tag>
+                  </HStack>
+                  
+                  <Text
+                    fontSize="sm"
+                    color="gray.600"
+                    lineHeight="tall"
+                    pl={4}
+                    borderLeft="2px solid"
+                    borderColor="gray.200"
+                  >
+                    {project.description}
+                  </Text>
+                  
+                  <HStack flexWrap="wrap" gap={2} pl={4}>
+                    {project.technologies.map((tech, techIndex) => (
+                      <Tag
+                        key={techIndex}
+                        size="sm"
+                        bg="blue.50"
+                        color="blue.700"
+                        borderRadius="full"
+                        fontSize="xs"
+                        fontFamily="mono"
+                        border="1px solid"
+                        borderColor="blue.200"
+                      >
+                        {tech}
+                      </Tag>
+                    ))}
+                  </HStack>
+                </VStack>
+              </Box>
             ))}
-          </SimpleGrid>
+          </Box>
         </VStack>
       </Container>
     </Box>
