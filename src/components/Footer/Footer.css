@@ -1,0 +1,127 @@
+.footer {
+  background-color: #121212;
+  color: #F7F7F7;
+  padding: 6rem 3rem;
+}
+
+.footer__container {
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.footer__grid {
+  display: grid;
+  gap: 4rem;
+  grid-template-columns: 1fr;
+  margin-bottom: 3rem;
+}
+
+.footer__brand-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  letter-spacing: -0.025em;
+}
+
+.footer__brand-description {
+  font-family: 'Roboto', sans-serif;
+  color: rgba(247, 247, 247, 0.8);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.footer__social {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer__social-link {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: #3A3A3C;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #F7F7F7;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.footer__social-link:hover {
+  background-color: #2ECC71;
+}
+
+.footer__section-title {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 1.125rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer__services-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer__services-list li {
+  margin-bottom: 0.75rem;
+}
+
+.footer__services-link {
+  font-family: 'Roboto', sans-serif;
+  color: rgba(247, 247, 247, 0.8);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer__services-link:hover {
+  color: #2ECC71;
+}
+
+.footer__contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer__contact-item {
+  display: flex;
+  align-items: center;
+}
+
+.footer__contact-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.75rem;
+  color: rgba(247, 247, 247, 0.8);
+}
+
+.footer__contact-value {
+  font-family: 'Roboto', sans-serif;
+  color: rgba(247, 247, 247, 0.8);
+}
+
+.footer__bottom {
+  border-top: 1px solid #3A3A3C;
+  padding-top: 2rem;
+  text-align: center;
+}
+
+.footer__copyright {
+  font-family: 'Roboto', sans-serif;
+  color: rgba(247, 247, 247, 0.6);
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .footer__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+  }
+} 
