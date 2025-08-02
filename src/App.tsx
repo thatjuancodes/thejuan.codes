@@ -4,7 +4,6 @@ import Navigation from './components/Navigation/Navigation';
 import Hero from './components/Hero/Hero';
 import Projects from './components/Projects/Projects';
 import Testimonials from './components/Testimonials/Testimonials';
-import Blog from './components/Blog/Blog';
 import Footer from './components/Footer/Footer';
 
 const App: React.FC = () => {
